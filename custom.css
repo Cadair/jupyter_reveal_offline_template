@@ -1,0 +1,37 @@
+body {
+    font-size: 140%;
+}
+
+div.slides {
+    margin-top: -7%;
+}
+
+.left {
+    width: 49%;
+    float: left;
+}
+
+.right {
+    width: 49%;
+    float: right;
+}
+
+.centre {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+div.prompt {
+    display: none;
+}
+
+div.highlight {
+    font-size: 85%; /* This Seems to give an approximate 80char line at 1024 */
+}
+
+div.output_html {
+    font-size: 85%;
+}
