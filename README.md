@@ -1,5 +1,6 @@
-A boilerplate Jupyter Notebook Reveal Repo
-------------------------------------------
+# VivaTalk
+Oh god it's time.
 
-This contains all the files you need to kick off an offline IPython
-Notebook Reveal presentation.
+run this to push to GH pages:
+
+    rm output/images; cp -r images output; ghp-import -n output -p; rm -r output/images; ln -s ../images output/images
