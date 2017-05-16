@@ -1,37 +1,4 @@
-{%- extends 'basic.tpl' -%}
-{% from 'mathjax.tpl' import mathjax %}
-
-{%- block any_cell scoped -%}
-{%- if cell.metadata.get('slide_start', False) -%}
-<section>
-{%- endif -%}
-{%- if cell.metadata.get('subslide_start', False) -%}
-<section>
-{%- endif -%}
-{%- if cell.metadata.get('fragment_start', False) -%}
-<div class="fragment">
-{%- endif -%}
-
-{%- if cell.metadata.slide_type == 'notes' -%}
-<aside class="notes">
-{{ super() }}
-</aside>
-{%- elif cell.metadata.slide_type == 'skip' -%}
-{%- else -%}
-{{ super() }}
-{%- endif -%}
-
-{%- if cell.metadata.get('fragment_end', False) -%}
-</div>
-{%- endif -%}
-{%- if cell.metadata.get('subslide_end', False) -%}
-</section>
-{%- endif -%}
-{%- if cell.metadata.get('slide_end', False) -%}
-</section>
-{%- endif -%}
-
-{%- endblock any_cell -%}
+{%- extends 'slides_reveal.tpl' -%}
 
 {% block header %}
 <!DOCTYPE html>
@@ -46,12 +13,12 @@
 
 <title>{{resources['metadata']['name']}} slides</title>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="src/require.js/2.1.10/require.min.js"></script>
+<script src="src/jquery/2.0.3/jquery.min.js"></script>
 
 <!-- General and theme style sheets -->
 <link rel="stylesheet" href="{{resources.reveal.url_prefix}}/css/reveal.css">
-<link rel="stylesheet" href="{{resources.reveal.url_prefix}}/css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="{{resources.reveal.url_prefix}}/css/theme/{{resources.reveal.theme}}.css" id="theme">
 
 <!-- If the query includes 'print-pdf', include the PDF print sheet -->
 <script>
@@ -62,7 +29,6 @@ if( window.location.search.match( /print-pdf/gi ) ) {
         link.href = '{{resources.reveal.url_prefix}}/css/print/pdf.css';
         document.getElementsByTagName( 'head' )[0].appendChild( link );
 }
-
 </script>
 
 <!--[if lt IE 9]>
@@ -70,10 +36,10 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 <![endif]-->
 
 <!-- Loading the mathjax macro -->
-{{ mathjax() }}
+{{ mathjax(url="src/MathJax-2.7.1/") }}
 
 <!-- Get Font-awesome from cdn -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css">
+<link rel="stylesheet" href="src/font-awesome/4.1.0/css/font-awesome.css">
 
 {% for css in resources.inlining.css -%}
     <style type="text/css">
@@ -154,45 +120,13 @@ a.anchor-link {
 <!-- Custom stylesheet, it must be in the same directory as the html file -->
 <link rel="stylesheet" href="custom.css">
 
-<!-- ##################################################################### -->
-<!-- UNCOMMENT THIS SECTION TO HIDE INPUT CODE                             -->
-<!-- ##################################################################### -->
-<!--
-
-<style type="text/css">
-//div.output_wrapper {
-//  margin-top: 0px;
-//}
-.input_hidden {
-  display: none;
-//  margin-top: 5px;
-}
-</style>
-
-<script>
-$(document).ready(function(){
-  $(".output_wrapper").click(function(){
-      $(this).prev('.input_hidden').slideToggle();
-  });
-})
-</script>
--->
-<!-- ##################################################################### -->
 </head>
 {% endblock header%}
 
-
-{% block body %}
-<body>
-<div class="reveal">
-<div class="slides">
-{{ super() }}
-</div>
-</div>
+{% block post_slides %}
 
 <script>
-
-require(
+  require(
     {
       // it makes sense to wait a little bit when you are loading
       // reveal from a cdn in a slow connection environment
@@ -202,58 +136,15 @@ require(
       "{{resources.reveal.url_prefix}}/lib/js/head.min.js",
       "{{resources.reveal.url_prefix}}/js/reveal.js"
     ],
-
     function(head, Reveal){
-
-            // Full list of configuration options available here: https://github.com/hakimel/reveal.js#configuration
-            Reveal.initialize({
-
-            // Display controls in the bottom right corner
-            //controls: true,
-
-            // Display a presentation progress bar
+        // Full list of configuration options available here: https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
             progress: true,
+            history: true,
+            theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+            transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/none
 
-            // Push each slide change to the browser history
-            //history: false,
-
-            // Enable keyboard shortcuts for navigation
-            keyboard: true,
-
-            // Enable touch events for navigation
-            //touch: true,
-
-            // Enable the slide overview mode
-            //overview: true,
-
-            // Vertical centering of slides
-            //center: true,
-
-            // Loop the presentation
-            //loop: false,
-
-            // Change the presentation direction to be RTL
-            //rtl: false,
-
-            // Number of milliseconds between automatically proceeding to the
-            // next slide, disabled when set to 0, this value can be overwritten
-            // by using a data-autoslide attribute on your slides
-            //autoSlide: 0,
-
-            // Enable slide navigation via mouse wheel
-            //mouseWheel: false,
-
-            // Transition style
-            transition: 'slide', // default/cube/page/concave/zoom/linear/fade/none
-
-            // Transition speed
-            //transitionSpeed: 'default', // default/fast/slow
-
-            // Transition style for full page backgrounds
-            //backgroundTransition: 'default', // default/linear/none
-
-            // Theme
-            theme: 'plain', // available themes are in /css/theme
             
             //size
             width: '80%',
@@ -261,7 +152,6 @@ require(
             parallaxBackgroundImage: 'images/background_1.jpg',
             parallaxBackgroundSize: '3800px 1200px',
 
-            slideNumber: true,
 
             // Optional libraries used to extend on reveal.js
             dependencies: [
@@ -272,30 +162,19 @@ require(
                   condition: function() { return !!document.body.classList; } }
             ]
         });
-
-
         var update = function(event){
           if(MathJax.Hub.getAllJax(Reveal.getCurrentSlide())){
             MathJax.Hub.Rerender(Reveal.getCurrentSlide());
           }
         };
-
         Reveal.addEventListener('slidechanged', update);
-
         var update_scroll = function(event){
           $(".reveal").scrollTop(0);
         };
-
         Reveal.addEventListener('slidechanged', update_scroll);
-
     }
 );
-
 </script>
 
 </body>
-{% endblock body %}
-
-{% block footer %}
-</html>
-{% endblock footer %}
+{% endblock post_slides %}
