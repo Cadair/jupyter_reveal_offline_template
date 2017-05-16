@@ -1,6 +1,14 @@
-# VivaTalk
-Oh god it's time.
+# Jupyter Reveal Offline Template
 
-run this to push to GH pages:
+This tempate is a quickstart for a nbconvert reveal slideshow that does not
+need an internet connection. Which is good for shitty WiFi when you are
+presenting and excellent for editing on planes.
 
-    rm output/images; cp -r images output; ghp-import -n output -p; rm -r output/images; ln -s ../images output/images
+## Quickstart
+
+Copy this folder, edit index.ipynb then run:
+
+    build.sh index.ipynb --post serve
+
+`build.sh` is just a script that holds a bunch of arguments needed to nbconvert
+that makes this repo work (it's very easy to read).
