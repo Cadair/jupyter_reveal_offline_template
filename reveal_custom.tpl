@@ -130,7 +130,7 @@ a.anchor-link {
     {
       // it makes sense to wait a little bit when you are loading
       // reveal from a cdn in a slow connection environment
-      waitSeconds: 15
+      // waitSeconds: 15
     },
     [
       "{{resources.reveal.url_prefix}}/lib/js/head.min.js",
@@ -145,6 +145,7 @@ a.anchor-link {
             theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
             transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/none
 
+            controlsLayout: "edges",
             
             //size
             width: '80%',
