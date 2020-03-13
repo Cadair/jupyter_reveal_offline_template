@@ -1,0 +1,52 @@
+#+REVEAL_ROOT: /src/reveal.js/
+#+REVEAL_INIT_OPTIONS: transition:fade'
+#+REVEAL_THEME: simple
+#+REVEAL_DEFAULT_SLIDE_BACKGROUND: ./images/background_1.jpg
+#+REVEAL_TITLE_SLIDE_BACKGROUND: ./images/background_1.jpg
+#+OPTIONS: toc:nil
+#+OPTIONS: num:nil
+#+REVEAL_EXTRA_CSS: org.css
+
+#+TITLE: SunPy: Python for Solar Physics
+#+AUTHOR: Stuart Mumford
+#+REVEAL_TITLE_SLIDE: <h3>%t</h3>
+#+REVEAL_TITLE_SLIDE: <h4>%a</h4>
+#+REVEAL_TITLE_SLIDE: <a href="https://aperio.software"><img style='float: left; width: 30%%; margin-top: 100px; height: 25%%;' src='images/aperio.svg'/></a><a href="https://sheffield.ac.uk"><img style='float: right; width: 30%%; margin-top: 100px; height: 25%%;' src='images/TUOS_Logo_CMYK_Keyline.svg'/></a><a href="https://sunpy.org"><img style='float: right; width: 30%%; margin-top: 100px; height: 25%%; margin-right: 5%%;' src='images/sunpy.svg'/></a>
+
+* Me
+
+I am the Lead Developer of SunPy. I work for the National Solar Observatory in the DKI Solar Telescope Data Centre.
+
+#+REVEAL_HTML: <div class='left'>
+
+Find me online:
+
+- [[http://stuartmumford.uk][stuartmumford.uk]]
+- [[https://matrix.to/#/@cadair:cadair.com][@cadair:cadair.com]] on Matrix
+- [[https://github.com/Cadair][@Cadair]] on GitHub
+- [[https://twitter.com/stuartmumford][@stuartmumford]] on Twitter
+
+#+REVEAL_HTML: </div>
+
+#+REVEAL_HTML: <div class='right'>
+
+#+attr_html: :width 500px
+[[./images/cadair.jpg]]
+
+#+REVEAL_HTML: </div>
+
+
+# AIA
+* 
+  :PROPERTIES:
+  :reveal_background: ./images/fulldiskmulticolor.jpg
+  :reveal_background_trans: slide
+  :END:
+
+# DKIST
+* 
+  :PROPERTIES:
+  :reveal_extra_attr: data-background-video="" data-background-video-loop=true
+  :END:
+
+

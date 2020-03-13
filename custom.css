@@ -2,6 +2,10 @@ body {
     font-size: 160%;
     font-family: Lato, Ariel, sans-serif !important;
 }
+.reveal {
+    font-size: 160%;
+    overflow-y: scroll;
+}
 
 div.slides {
     margin-top: -5%;
